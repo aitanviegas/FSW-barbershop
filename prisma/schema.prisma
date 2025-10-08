@@ -17,7 +17,7 @@ datasource db {
 model User {
   id       String    @id @default(uuid())
   email    String
-  name     String?
+  name     String
   createAt DateTime  @default(now())
   updateAt DateTime  @updatedAt
   bookings Booking[]
