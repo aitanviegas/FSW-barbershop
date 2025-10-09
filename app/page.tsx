@@ -9,10 +9,12 @@
 
 "use client"
 import { useState } from "react"
+import { Button } from "./_components/ui/button"
 
 const Home = () => {
   const [] = useState()
-  return <h1 className="mb-5 bg-slate-300 py-2 text-red-500">Home Page</h1>
+  // return <h1 className="mb-5 bg-slate-300 py-2 text-red-500">Home Page</h1>
+  return <Button>Clique!</Button>
 }
 
 export default Home
