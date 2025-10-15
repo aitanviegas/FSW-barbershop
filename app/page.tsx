@@ -10,7 +10,7 @@
 // "use client"
 // import { useState } from "react"
 // import { Button } from "./_components/ui/button"
-import { SearchIcon } from "lucide-react"
+import { EyeIcon, SearchIcon } from "lucide-react"
 import Header from "./_components/header"
 import { Button } from "./_components/ui/button"
 import { Input } from "./_components/ui/input"
@@ -25,6 +25,9 @@ import BarbershopItem from "./_components/barbershop-item"
 const Home = async () => {
   //chamar banco de dados
   const barbershops = await db.barbershop.findMany({})
+  const popularbarbershops = await db.barbershop.findMany({
+    orderBy: { name: "desc" },
+  })
   // console.log({ barbershops })
   return (
     <div>
@@ -42,6 +45,58 @@ const Home = async () => {
           </Button>
         </div>
 
+        {/* {BUSCA RÁPIDA} */}
+        <div className="hide-scrollbar mt-5 flex items-center gap-3 overflow-auto">
+          <Button variant={"secondary"} className="whitespace-nowrap">
+            <Image
+              src={"/cabelo.svg"}
+              alt="Ícone de tesoura"
+              width={16}
+              height={16}
+            />
+            Cabelo
+          </Button>
+          <Button variant={"secondary"} className="whitespace-nowrap">
+            <Image
+              src={"/barba.svg"}
+              alt="Ícone de tesoura"
+              width={16}
+              height={16}
+            />
+            Barba
+          </Button>
+          <Button variant={"secondary"} className="whitespace-nowrap">
+            <Image
+              src={"/acabamento.svg"}
+              alt="Ícone de tesoura"
+              width={16}
+              height={16}
+            />
+            Acabamento
+          </Button>
+          <Button variant={"secondary"} className="whitespace-nowrap">
+            <Image
+              src={"/cabelo.svg"}
+              alt="Ícone de tesoura"
+              width={16}
+              height={16}
+            />
+            Sobrancelha
+          </Button>
+          <Button variant={"secondary"} className="whitespace-nowrap">
+            <EyeIcon size={16} />
+            Barba
+          </Button>
+          <Button variant={"secondary"} className="whitespace-nowrap">
+            <Image
+              src={"/acabamento.svg"}
+              alt="Ícone de tesoura"
+              width={16}
+              height={16}
+            />
+            Acabamento
+          </Button>
+        </div>
         {/* {IMAGEM} */}
         <div className="relative mt-6 h-[150px] w-full">
           <Image
@@ -80,14 +135,31 @@ const Home = async () => {
           </CardContent>
         </Card>
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
-          Recomenadados
+          Recomendados
         </h2>
         <div className="hide-scrollbar flex gap-4 overflow-auto">
           {barbershops.map((item) => (
             <BarbershopItem key={item.id} barbershop={item} />
           ))}
         </div>
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Populares
+        </h2>
+        <div className="hide-scrollbar flex gap-4 overflow-auto">
+          {popularbarbershops.map((item) => (
+            <BarbershopItem key={item.id} barbershop={item} />
+          ))}
+        </div>
       </div>
+      <footer>
+        <Card>
+          <CardContent className="px-5 py-6">
+            <p className="text-sm text-gray-400">
+              2025 Copyright <span className="font-bold">PropagaTech</span>
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </div>
   )
 }
