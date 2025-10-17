@@ -4,6 +4,7 @@ import { Button } from "./ui/button"
 import { CardContent, Card } from "./ui/card"
 import { Badge } from "./ui/badge"
 import Image from "next/image"
+import Link from "next/link"
 
 interface BarbershopItemProps {
   barbershop: Barbershop
@@ -34,8 +35,13 @@ const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
         <div className="px-1 py-3">
           <h3 className="truncate text-sm font-semibold">{barbershop.name}</h3>
           <p className="truncate text-xs text-gray-500">{barbershop.address}</p>
-          <Button variant={"secondary"} className="mt-3 w-full" size={"sm"}>
-            Reservar
+          <Button
+            variant={"secondary"}
+            className="mt-3 w-full"
+            size={"sm"}
+            asChild
+          >
+            <Link href={`/barbershops/${barbershop.id}`}>Reservar</Link>
           </Button>
         </div>
       </CardContent>
