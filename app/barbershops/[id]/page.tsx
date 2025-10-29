@@ -5,6 +5,7 @@ import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import PhoneItem from "@/app/_components/phone-item"
 
 interface BarbershopPageProps {
   params: {
@@ -34,8 +35,8 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       {/* {IMAGEM} */}
       <div className="relative h-[250px] w-full">
         <Image
-          alt={barbershop?.name}
-          src={barbershop?.imageUrl}
+          alt={barbershop?.name ?? "Barbershop"}
+          src={barbershop?.imageUrl ?? "/default-barbershop.jpg"}
           fill
           className="object-cover"
         />
@@ -83,6 +84,12 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
         <h2 className="text-xs font-bold uppercase text-gray-400">Serviços</h2>
         {barbershop.services.map((service) => (
           <ServiceItem key={service.id} service={service} />
+        ))}
+      </div>
+      {/* {CONTATO} */}
+      <div className="space-y-3 p-5">
+        {barbershop.phone.map((phone) => (
+          <PhoneItem key={phone} phone={phone} />
         ))}
       </div>
     </div>
